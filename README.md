@@ -47,3 +47,6 @@ Browse the Boilerplate on [http://sylvainlap.herokuapp.com](http://sylvainlap.he
 
 ## Heroku
 This Boilerplate comes with a Procfile for Heroku.
+
+## Credits
+Very inspired from [MEAN.JS](http://meanjs.org/).
