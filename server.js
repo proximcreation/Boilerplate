@@ -13,4 +13,4 @@ var db = mongoose.connect(config.db, function(err) {
 var app = require('./config/express')(db);
 app.listen(config.port);
 
-console.log(chalk.green('Boilerplate started on port ' + config.port));
+console.log(chalk.green('     [OK] Boilerplate started on port ' + config.port));

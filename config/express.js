@@ -17,13 +17,6 @@ module.exports = function(db) {
   //require('../app/models/xxx.js');
   console.log(chalk.green('     [OK] Models loaded.'));
 
-  // Setting application local variables
-  app.locals.title = config.app.title;
-  app.locals.description = config.app.description;
-  app.locals.keywords = config.app.keywords;
-  app.locals.facebookAppId = config.facebook.clientID;
-  app.locals.secure = config.secure;
-
   // Compression
   app.use(compression());
 
@@ -34,13 +27,11 @@ module.exports = function(db) {
   app.set('view engine', 'html');
   app.set('views', './app/views');
 
-  // Environment dependent middleware
+  // Enable logger (morgan)
   if (process.env.NODE_ENV === 'development') {
-    // Enable logger (morgan)
     app.use(morgan('dev'));
-
-    // Disable views cache
-    app.set('view cache', false);
+  } else {
+    app.use(morgan('tiny'));
   }
 
   // Parse application/x-www-form-urlencoded
@@ -56,6 +47,16 @@ module.exports = function(db) {
   //require('../app/routes/xxx.js');
   console.log(chalk.green('     [OK] Routes loaded.'));
 
+  // API router
+  var api = express.Router();
+
+  // Load the API routes
+  //require('../app/routes/xxx.js');
+  console.log(chalk.green('     [OK] API Routes loaded.'));
+
+  // Load the API router
+  app.use('/api/v1', api);
+
   // Assume 404 since no middleware responded
   app.use(function(req, res) {
     res.status(404).render('404', {
@@ -64,17 +65,7 @@ module.exports = function(db) {
     });
   });
 
-  if (app.locals.secure) {
-    console.log('Securely using https protocol');
-    var https = require('https'),
-    privateKey  = fs.readFileSync('./config/sslcert/key.pem', 'utf8'),
-    certificate = fs.readFileSync('./config/sslcert/cert.pem', 'utf8'),
-    credentials = {key: privateKey, cert: certificate},
-    httpsServer = https.createServer(credentials, app);
-    return httpsServer;
-  } else {
-    console.log('Insecurely using http protocol');
-    var httpServer = http.createServer(app);
-    return httpServer;
-  }
+  // Start the HTTP server
+  var httpServer = http.createServer(app);
+  return httpServer;
 };
