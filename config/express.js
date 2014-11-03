@@ -14,7 +14,7 @@ module.exports = function(db) {
   var app = express();
 
   // Load the models
-  //require('../app/models/xxx.js');
+  require('../app/models/user.models');
   console.log(chalk.green('     [OK] Models loaded.'));
 
   // Compression
