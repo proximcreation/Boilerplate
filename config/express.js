@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var compression = require('compression');
 var chalk = require('chalk');
 var swig = require('swig');
+var swagger = require("swagger-node-express");
 var config = require('./config');
 
 module.exports = function(db) {
@@ -53,6 +54,12 @@ module.exports = function(db) {
   // Load the API routes
   //require('../app/routes/xxx.js');
   console.log(chalk.green('     [OK] API Routes loaded.'));
+
+  // Load the Swagger module.
+  var swaggerModels = require('../app/models/swagger');
+  swagger.createNew(api);
+  swagger.addModels(swaggerModels);
+  console.log(chalk.green('     [OK] Swagger loaded.'));
 
   // Load the API router
   app.use('/api/v1', api);
