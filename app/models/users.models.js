@@ -3,7 +3,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var crypto = require('crypto');
-var swagger = require('swagger-node-express');
 
 var UserSchema = new Schema({
   firstName: {

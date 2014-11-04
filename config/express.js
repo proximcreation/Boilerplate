@@ -7,7 +7,8 @@ var bodyParser = require('body-parser');
 var compression = require('compression');
 var chalk = require('chalk');
 var swig = require('swig');
-var swagger = require("swagger-node-express");
+var swagger = require('swagger-node-express');
+var path = require('path');
 var config = require('./config');
 
 module.exports = function(db) {
@@ -15,7 +16,7 @@ module.exports = function(db) {
   var app = express();
 
   // Load the models
-  require('../app/models/user.models');
+  require('../app/models/users.models');
   console.log(chalk.green('     [OK] Models loaded.'));
 
   // Compression
@@ -42,7 +43,7 @@ module.exports = function(db) {
   app.use(bodyParser.json())
 
   // Setting the static folder
-  app.use(express.static(__dirname + '/public'));
+  app.use(express.static(path.resolve('./public')));
 
   // Load the routes
   //require('../app/routes/xxx.js');
@@ -51,18 +52,24 @@ module.exports = function(db) {
   // API router
   var api = express.Router();
 
+  // Load the Swagger module
+  swagger.setAppHandler(api);
+  var swaggerModels = require('../app/models/swagger');
+  swagger.addModels(swaggerModels);
+
   // Load the API routes
-  //require('../app/routes/xxx.js');
+  require('../app/routes/users.routes')();
   console.log(chalk.green('     [OK] API Routes loaded.'));
 
-  // Load the Swagger module.
-  var swaggerModels = require('../app/models/swagger');
-  swagger.createNew(api);
-  swagger.addModels(swaggerModels);
+  swagger.configureSwaggerPaths("", "api-docs", "");
+  swagger.configure("http://localhost:3000", "1.0");
   console.log(chalk.green('     [OK] Swagger loaded.'));
 
   // Load the API router
   app.use('/api/v1', api);
+
+  // Expose the Swagger-UI
+  app.use('/swagger', express.static(path.resolve('./swagger-ui')));
 
   // Assume 404 since no middleware responded
   app.use(function(req, res) {

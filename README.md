@@ -48,5 +48,8 @@ Browse the Boilerplate on [http://sylvainlap.herokuapp.com](http://sylvainlap.he
 ## Heroku
 This Boilerplate comes with a Procfile for Heroku.
 
+## Swagger
+This Boilerplate comes with Swagger.
+
 ## Credits
 Very inspired from [MEAN.JS](http://meanjs.org/).

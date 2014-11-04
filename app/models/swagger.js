@@ -1,8 +1,8 @@
 'use strict';
 
 exports.models = {
-  'User': {
-    'id': 'User',
+  'user': {
+    'id': 'user',
     'required': ['username', 'provider'],
     'properties': {
       'firstName': {
@@ -40,7 +40,7 @@ exports.models = {
       'created': {
         'type': 'date',
         'description': 'The account creation date.'
-      },
+      }
     }
   }
 }
