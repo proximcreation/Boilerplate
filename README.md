@@ -1,7 +1,7 @@
 Boilerplate
 ===========
 
-A MEAN CMS boilerplate
+A MEAN CMS Boilerplate.
 
 MEAN is a full-stack JavaScript open-source solution, which provides a solid starting point for [MongoDB](http://www.mongodb.org/), [Node.js](http://www.nodejs.org/), [Express](http://expressjs.com/), and [AngularJS](http://angularjs.org/) based applications.
 
@@ -22,7 +22,7 @@ $ sudo npm install -g grunt-cli
 ```
 
 ## Quick Install
-The first thing you should do is install the Node.js dependencies. The boilerplate comes pre-bundled with a package.json file that contains the list of modules you need to start your application. To install Node.js dependencies you're going to use npm again, in the application folder run this in the command-line:
+The first thing you should do is install the Node.js dependencies. The Boilerplate comes pre-bundled with a package.json file that contains the list of modules you need to start your application. To install Node.js dependencies you're going to use npm again, in the application folder run this in the command-line:
 
 ```
 $ npm install
