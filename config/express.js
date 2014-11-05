@@ -53,7 +53,7 @@ module.exports = function(db) {
   app.use(express.static(path.resolve('./public')));
 
   // Load the routes
-  //require('../app/routes/xxx.js');
+  require('../app/routes/core.routes.js')(app);
   console.log(chalk.green('     [OK] Routes loaded.'));
 
   // API router
