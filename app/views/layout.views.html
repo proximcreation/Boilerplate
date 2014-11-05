@@ -11,17 +11,20 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
 
   <!-- Semantic META -->
-  <meta name="keywords" content="{{keywords}}" />
   <meta name="description" content="{{description}}" />
+  <meta name="keywords" content="{{keywords}}" />
 
   <!--Application CSS Files -->
   {% for cssFile in cssFiles %}<link rel="stylesheet" href="{{cssFile}}" />{% endfor %}
 
   </head>
 
-  <body class="ng-cloak">
-    <section>
-      {% block content %}{% endblock %}
+  <!--<body class="ng-cloak">-->
+  <body>
+    <section class="content">
+      <section class="container">
+        {% block content %}{% endblock %}
+      </section>
     </section>
 
     <!--Embedding The User Object -->

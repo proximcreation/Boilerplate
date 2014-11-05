@@ -19,14 +19,21 @@ module.exports = function(db) {
   require('../app/models/users.models');
   console.log(chalk.green('     [OK] Models loaded.'));
 
+  // Setting application local variables
+  app.locals.title = config.app.title;
+  app.locals.description = config.app.description;
+  app.locals.keywords = config.app.keywords;
+  app.locals.jsFiles = config.assets.lib.js;
+  app.locals.cssFiles = config.assets.lib.css;
+
   // Compression
   app.use(compression());
 
   // Set swig as the template engine
-  app.engine('html', swig.renderFile);
+  app.engine('views.html', swig.renderFile);
 
   // Set views path and view engine
-  app.set('view engine', 'html');
+  app.set('view engine', 'views.html');
   app.set('views', './app/views');
 
   // Enable logger (morgan)
@@ -74,8 +81,7 @@ module.exports = function(db) {
   // Assume 404 since no middleware responded
   app.use(function(req, res) {
     res.status(404).render('404', {
-      url: req.originalUrl,
-      error: 'Not Found'
+      url: req.originalUrl
     });
   });
 
