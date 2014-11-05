@@ -8,7 +8,7 @@ var User = mongoose.model('User');
 exports.me = {
   'spec': {
     description: 'Get the current user.',
-    path: '/users',
+    path: '/users/me',
     method: 'GET',
     summary: 'Get the current user.',
     type : 'user',
@@ -27,7 +27,7 @@ exports.me = {
 exports.update = {
   'spec': {
     description: 'Update the current user.',
-    path: '/users',
+    path: '/users/me',
     method: 'PUT',
     summary: 'Update the current user.',
     type : 'user',

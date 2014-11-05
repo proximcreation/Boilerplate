@@ -27,5 +27,11 @@
     "morgan": "1.4.x",
     "swagger-node-express": "2.1.x",
     "swig": "1.4.x"
+  },
+  "devDependencies": {
+    "grunt": "0.4.x",
+    "grunt-contrib-watch": "0.6.x",
+    "grunt-concurrent": "1.0.x",
+    "grunt-nodemon": "0.3.x"
   }
 }

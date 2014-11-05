@@ -15,7 +15,9 @@
   <meta name="keywords" content="{{keywords}}" />
 
   <!--Application CSS Files -->
-  {% for cssFile in cssFiles %}<link rel="stylesheet" href="{{cssFile}}" />{% endfor %}
+  {% for cssFile in cssFiles %}
+  <link rel="stylesheet" href="{{cssFile}}" />
+  {% endfor %}
 
   </head>
 
@@ -33,7 +35,14 @@
     </script>
 
     <!--Application JavaScript Files -->
-    {% for jsFile in jsFiles %}<script type="text/javascript" src="{{jsFile}}"></script>{% endfor %}
+    {% for jsFile in jsFiles %}
+    <script type="text/javascript" src="{{jsFile}}"></script>
+    {% endfor %}
+
+    {% if process.env.NODE_ENV === 'development' %}
+    <!--Livereload script rendered -->
+    <script type="text/javascript" src="http://localhost:35729/livereload.js"></script>
+    {% endif %}
   </body>
 
 </html> 
