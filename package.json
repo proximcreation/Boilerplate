@@ -1,7 +1,7 @@
 {
-  "name": "Boilerplate",
-  "description": "A MEAN CMS boilerplate.",
+  "name": "BOILERPLATE",
   "version": "0.0.1",
+  "description": "A MEAN CMS Boilerplate.",
   "author": "Sylvain Lapendry",
   "repository": {
     "type": "git",
