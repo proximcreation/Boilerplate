@@ -5,3 +5,15 @@ exports.index = function(req, res) {
     user: req.user || null
   });
 };
+
+exports.signup = function(req, res) {
+	//todo
+};
+
+exports.signin = function(req, res) {
+	//todo
+};
+
+exports.signout = function(req, res) {
+	//todo
+};

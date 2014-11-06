@@ -27,6 +27,14 @@ module.exports = function(grunt) {
         }
       }
     },
+    jshint: {
+      all: {
+        src: watchFiles.clientJS.concat(watchFiles.serverJS),
+        options: {
+          jshintrc: true
+        }
+      }
+    },
     nodemon: {
       dev: {
         script: 'server.js',
@@ -44,9 +52,11 @@ module.exports = function(grunt) {
     }
   });
 
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-nodemon');
 
   grunt.registerTask('default', ['concurrent:default']);
+  grunt.registerTask('lint', ['jshint']);
 };

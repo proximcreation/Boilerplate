@@ -25,11 +25,11 @@
     "lodash": "2.4.x",
     "mongoose": "3.8.x",
     "morgan": "1.4.x",
-    "swagger-node-express": "2.1.x",
     "swig": "1.4.x"
   },
   "devDependencies": {
     "grunt": "0.4.x",
+    "grunt-contrib-jshint": "0.10.x",
     "grunt-contrib-watch": "0.6.x",
     "grunt-concurrent": "1.0.x",
     "grunt-nodemon": "0.3.x"
