@@ -5,7 +5,6 @@ module.exports = function(grunt) {
   var watchFiles = {
     serverViews: ['app/views/**/*.*'], 
     serverJS: ['gruntfile.js', 'server.js', 'config/**/*.js', 'app/**/*.js'],
-    clientViews: ['public/modules/**/views/*.html'],
     clientJS: ['public/js/*.js', 'public/modules/**/*.js'],
     clientCSS: ['public/modules/**/*.css']
   };
@@ -14,22 +13,24 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     watch: {
-      serverViews: {
-        files: watchFiles.serverViews,
-        options: {
-          livereload: true
-        }
-      },
       serverJS: {
         files: watchFiles.serverJS,
-        options: {
-          livereload: true
-        }
+        tasks: ['jshint:serverJS']
+      },
+      clientJS: {
+        files: watchFiles.clientJS,
+        tasks: ['jshint:clientJS']
       }
     },
     jshint: {
-      default: {
-        src: watchFiles.clientJS.concat(watchFiles.serverJS),
+      serverJS: {
+        src: watchFiles.serverJS,
+        options: {
+          jshintrc: true
+        }
+      },
+      clientJS: {
+        src: watchFiles.clientJS,
         options: {
           jshintrc: true
         }
@@ -55,18 +56,16 @@ module.exports = function(grunt) {
         src: './app',
         dest: './doc',
         options: {
-          excludeFilters: "node_modules/"
+          excludeFilters: 'node_modules/'
         }
       }
     }
   });
 
-  grunt.loadNpmTasks('grunt-apidoc');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-concurrent');
-  grunt.loadNpmTasks('grunt-nodemon');
+  // Load NPM tasks
+  require('load-grunt-tasks')(grunt);
 
+  // Tasks
   grunt.registerTask('default', ['concurrent:default']);
   grunt.registerTask('lint', ['jshint']);
   grunt.registerTask('doc', ['apidoc']);
