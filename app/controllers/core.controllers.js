@@ -17,7 +17,7 @@ exports.index = function(req, res) {
  * @apiParam {String} username The User username
  * @apiParam {String} password The User password
  *
- * @apiSuccess {Object} The User created
+ * @apiSuccess {Object} user The User created
  *
  * @apiError {String} message The error message
 **/
@@ -33,7 +33,7 @@ exports.signup = function(req, res) {
  * @apiParam {String} username The User username
  * @apiParam {String} password The User password
  *
- * @apiSuccess {Object} The User logged
+ * @apiSuccess {Object} user The User logged
  *
  * @apiError {String} message The error message
 **/

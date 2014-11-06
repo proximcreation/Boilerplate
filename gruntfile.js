@@ -28,7 +28,7 @@ module.exports = function(grunt) {
       }
     },
     jshint: {
-      all: {
+      default: {
         src: watchFiles.clientJS.concat(watchFiles.serverJS),
         options: {
           jshintrc: true
@@ -36,7 +36,7 @@ module.exports = function(grunt) {
       }
     },
     nodemon: {
-      dev: {
+      default: {
         script: 'server.js',
         options: {
           ext: 'js,html',
@@ -49,9 +49,19 @@ module.exports = function(grunt) {
       options: {
         logConcurrentOutput: true
       }
+    },
+    apidoc: {
+      default: {
+        src: './app',
+        dest: './doc',
+        options: {
+          excludeFilters: "node_modules/"
+        }
+      }
     }
   });
 
+  grunt.loadNpmTasks('grunt-apidoc');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-concurrent');
@@ -59,4 +69,5 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['concurrent:default']);
   grunt.registerTask('lint', ['jshint']);
+  grunt.registerTask('doc', ['apidoc']);
 };
